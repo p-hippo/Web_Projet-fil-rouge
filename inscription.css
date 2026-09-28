@@ -1,0 +1,61 @@
+:root {
+  --primary-bg-color: #F3F4F6;
+  --button-bg-color: #7C3AED;
+  --button-bg-color-hover: #5B21B6;
+  --container-bg-color: #FFFFFF;
+  --text-color: #1F2937;
+  --primary-color: #ffffff;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--primary-bg-color);
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    text-align: center;
+    color: var(--text-color);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    width: 400px;
+    margin: 10px auto;
+    color: var(--text-color);
+    background-color: var(--container-bg-color);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container h2 {
+  border-bottom: 2px solid var(--primary-bg-color);
+}
+
+.container .note {
+  border: 1px solid var(--primary-bg-color);
+  padding: 10px;
+}
+
+.btn-submit {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: var(--button-bg-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color: var(--button-bg-color-hover);
+}
