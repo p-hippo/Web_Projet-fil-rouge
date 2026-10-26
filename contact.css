@@ -75,3 +75,23 @@ div{
     height: 20px;
     background-color: #e0e0e0;
 }
+
+.hidden {
+    display: none !important;
+}
+
+.scroll-wrapper {
+    max-height: 450px; 
+    overflow-y: auto;
+    background-color: #b0b4b8;
+    border-radius: 4px;
+}
+
+#results-body tr {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#results-body tr:hover {
+    background-color: #a2a6aa;
+}
