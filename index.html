@@ -5,6 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Steams</title>
         <link rel="stylesheet" href="index.css">
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+        <script src="supabaseclient.js" defer></script>
+        <script src="chat.js" defer></script>
     </head>
     <body>
 
@@ -12,21 +15,17 @@
             <tr>
                 <th>Conversation</th>
             </tr>
-            <tr>
-                <th></th>
+            <tr id="salon-row">
                 <td class="chatCircle"><a href="contact.html">X+</a></td>
-                <td class="chatCircle">X</td>
-                <td class="chatCircle">X</td>
-                <td class="chatCircle">X</td>
-                <td class="chatCircle">X</td>
-                <td class="chatCircle">X</td>
             </tr>
         </table>
         <div class="chatSection">
-            <p>1: Salut</p>
-            <p>2: Bonjour</p>
+            <div id="chat-messages-box">
+            <p style="color: gray; font-style: italic;">Sélectionnez un salon pour commencer à clavarder...</p>
+        </div>
+        <br>
         </br>
-        <input type="text" placeholder="Entrer un message"> <button>Envoyer</button>
+        <input type="text" placeholder="Entrer un message" id="message-input"> <button id="send-btn">Envoyer</button>
         </div>
     </body>
 </html>
