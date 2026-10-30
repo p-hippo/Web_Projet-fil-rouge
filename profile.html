@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steams - Configurer mon Profil</title>
+    
+    <script src="https://jsdelivr.net" defer></script>
+    <script src="supabaseclient.js" defer></script>
+    <script src="local.js" defer></script>
+    <script src="profil.js" defer></script>
+</head>
+<body>
+
+    <div class="register-container">
+        <h2>Configurer mon Profil</h2>
+        
+        <form id="form-profile">
+            <div class="input-group">
+                <label for="profile-name">Nom</label>
+                <input type="text" id="profile-name" placeholder="Entrez votre nom" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="profile-bio">Biographie</label>
+                <textarea id="profile-bio" placeholder="entrer bio" rows="4" style="width: 100%; border-radius: 4px; padding: 10px; border: 1px solid #ccc; font-family: sans-serif; box-sizing: border-box;"></textarea>
+            </div>
+            
+            <button type="submit" class="btn-submit">Enregistrer et Continuer</button>
+        </form>
+
+        <div class="links">
+            <a href="./index.html">Aller au menu principal</a>
+        </div>
+    </div>
+
+</body>
+</html>
