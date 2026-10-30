@@ -32,6 +32,7 @@ function getValidCredentials() {
 }
 
 document.querySelector(".btn-submit").addEventListener("click", async () => {
+    event.preventDefault();
     const credentials = getValidCredentials();
     if(!credentials) return;
 
