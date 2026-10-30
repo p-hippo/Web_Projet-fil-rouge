@@ -2,16 +2,19 @@
 
 const Auth = {
     async signIn(email, password){
-        return await supabaseClient.Auth.signInWithPassword({
+        return await supabaseClient.auth.signInWithPassword({
             email,
             password
         });
     },
 
     async signUp(email, password){
-        return await supabaseClient.Auth.signUp({
+        return await supabaseClient.auth.signUp({
             email,
-            password
+            password,
+            options: {
+            emailRedirectTo: "https://p-hippo.github.io/Web_Projet-fil-rouge/profile.html"
+        }
         });
     },
 
