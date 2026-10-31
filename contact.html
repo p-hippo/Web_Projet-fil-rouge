@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="contact.css">
         <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
         <script src="supabaseclient.js" defer></script>
+        <script src="data.js" defer></script> 
         <script src="local.js" defer></script>
         <script src="auth.js" defer></script>
         <script src="contact-search.js"></script>
@@ -28,9 +29,9 @@
             </div>
         </section>
 
-        <section class="section-profil" id="profile-section">
+        <section class="section-profil hidden" id="profile-section">
             <h1>Profil</h1>
-            <div>
+            <div class="profile-info-row">
             <img src="" alt="Photo de profil" class="PhotoProf" id="prof-img"/>
             <p id="prof-name">nom</p>
             <img src="" id="btn-add-contact" alt="Ajouter aux contacts" class="PhotoAdd"/>
