@@ -18,6 +18,18 @@ const Auth = {
         });
     },
 
+    async signOut() {
+        return await supabaseClient.auth.signOut();
+    },
+
+    async getUser() {
+        const { data, error } = await supabaseClient.auth.getSession();
+        if (error || !data.session) {
+            return { user: null, error: error ?? new Error("Aucune session") };
+        }
+        return { user: data.session.user, error: null };
+    },
+
     async getUser() {
     const { data, error } = await supabaseClient.auth.getSession();
     if (error || !data.session) {
