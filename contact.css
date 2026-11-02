@@ -24,7 +24,6 @@ table {
     width: 100%;
     background-color: #b0b4b8;
     border-collapse: collapse;
-    min-height: 400px;
 }
 
 tr {
@@ -55,7 +54,7 @@ td img {
     gap: 20px;
 }
 
-div{
+.section-profil .profile-info-row{
     display: flex;
     align-items: center;
     gap: 15px;

@@ -5,12 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Steams</title>
         <link rel="stylesheet" href="contact.css">
-        <script src="https://jsdelivr.net"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+        <script src="supabaseclient.js" defer></script>
+        <script src="data.js" defer></script> 
+        <script src="local.js" defer></script>
+        <script src="auth.js" defer></script>
+        <script src="contact-search.js" defer></script>
     </head>
     <body>
         <div class="container">
         <section class="section-recherche">
-        <input type="text" placeholder="Recherche un contact">
+        <input type="text" id="search-input" placeholder="Recherche un contact">
         <div class="scroll-wrapper">
                 <table id="results-table" class="hidden">
                     <thead>
@@ -24,18 +29,18 @@
             </div>
         </section>
 
-        <section class="section-profil">
+        <section class="section-profil hidden" id="profile-section">
             <h1>Profil</h1>
-            <div>
+            <div class="profile-info-row">
             <img src="" alt="Photo de profil" class="PhotoProf" id="prof-img"/>
             <p id="prof-name">nom</p>
-            <img src="" alt="Ajouter aux contacts" class="PhotoAdd"/>
+            <img src="" id="btn-add-contact" alt="Ajouter aux contacts" class="PhotoAdd"/>
             </div> 
             <p id="prof-bio">Bio</p>
-            <p>Steam Games</p>
+            <p id="prof-games">Steam Games</p>
         </section>
         </div>
 
-        <script src="contact-search.js"></script>
+        
     </body>
 </html>
