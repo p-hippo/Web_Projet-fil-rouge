@@ -76,7 +76,16 @@ const Data = {
           table: "Messages",
           filter: "salon_id=eq." + channelId,
         },
-        (payload) => onNewMessage(payload.new)
+        async (payload) => {
+          const { data: user } = await supabaseClient
+            .from("Users")
+            .select("name")
+            .eq("id", payload.new.sender_id)
+            .single();
+
+          payload.new.Users = user;
+          onNewMessage(payload.new);
+        }
       )
       .subscribe();
     

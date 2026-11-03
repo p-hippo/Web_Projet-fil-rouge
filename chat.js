@@ -83,9 +83,13 @@ function appendMessage(message) {
 
 function displayMessage(message) {
     const pElement = document.createElement("p");
+    const strongElement = document.createElement("strong");
     
     const senderName = message.Users?.name || "Profil Inconnu";
-    pElement.innerHTML = `<strong>${senderName}:</strong> ${message.content}`;
+    strongElement.textContent = `${senderName}: `;
+    
+    pElement.appendChild(strongElement);
+    pElement.appendChild(document.createTextNode(message.content));
     
     messagesHistoryContainer.appendChild(pElement);
 }
@@ -133,8 +137,8 @@ if (steamShareButton) {
             return;
         }
 
-        const messageContent = "Mon Top 10 Steam :<br>" + 
-            data.games.map((g, i) => `${i + 1}. ${g.name} (${g.hours}h)`).join("<br>");
+        const messageContent = "Mon Top 10 Steam :\n" + 
+            data.games.map((g, i) => `${i + 1}. ${g.name} (${g.hours}h)`).join("\n");
 
         await Data.sendMessage(activeSalonId.id, messageContent, currentProfileId);
     });

@@ -142,7 +142,6 @@ th {
     padding-right: 10px;
 }
 
-/* --- Bulles de messages style Discord --- */
 p {
     max-width: 75%;
     padding: 10px 14px;
@@ -152,6 +151,7 @@ p {
     line-height: 1.4;
     background-color: var(--bg-tertiary);
     word-break: break-word;
+    white-space: pre-line;
 }
 
 .chatSection input[type="text"] {
