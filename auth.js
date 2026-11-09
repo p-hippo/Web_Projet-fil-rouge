@@ -13,7 +13,7 @@ const Auth = {
             email,
             password,
             options: {
-            emailRedirectTo: "https://p-hippo.github.io/Web_Projet-fil-rouge/profile.html"
+            emailRedirectTo: `${window.location.origin}/profile.html`
         }
         });
     },

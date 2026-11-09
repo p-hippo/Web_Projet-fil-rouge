@@ -175,24 +175,70 @@ p {
     opacity: 1;
 }
 
-.chatSection button {
+.chatSection-bottom {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+#send-btn,
+#steam-share-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 42px;
+    padding: 0 18px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+#send-btn {
     background-color: var(--accent-purple);
     color: white;
     border: none;
-    padding: 0 20px;
-    height: 42px;
-    border-radius: 6px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s;
 }
 
-.chatSection button:hover {
+#send-btn:hover {
     background-color: var(--accent-purple-hover);
 }
 
-.chatSection-bottom {
+#steam-share-btn {
+    background-color: #2a475e;
+    color: #66c0f4;
+    border: 1px solid #66c0f4;
+}
+
+#steam-share-btn:hover {
+    background-color: #66c0f4;
+    color: #1b2838;
+}
+
+#send-btn:active,
+#steam-share-btn:active {
+    transform: scale(0.97);
+}
+
+#steam-share-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.nav-left {
     display: flex;
-    gap: 10px;
-    margin-top: 15px;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-logo {
+    height: 42px;
+    width: auto;
+    border-radius: 6px;
+    display: block;
 }

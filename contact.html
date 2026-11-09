@@ -4,6 +4,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Steams</title>
+        <link rel="icon" type="image/png" href="logo.png">
+        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="styles.css">
         <link rel="stylesheet" href="contact.css">
         <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
         <script src="supabaseclient.js" defer></script>
@@ -15,12 +18,8 @@
     <body>
 
         <nav style="padding: 15px 20px;">
-            <a href="./index.html">← Retour aux salons</a>
-        </nav>
-
-
-        <div class="container">
         <section class="section-recherche">
+        <img src="logo.png" alt="Logo Steams" class="auth-logo">
         <input type="text" id="search-input" placeholder="Recherche un contact">
         <div class="scroll-wrapper">
                 <table id="results-table" class="hidden">
@@ -34,18 +33,20 @@
                 </table>
             </div>
         </section>
+        <a href="./index.html" id="retour-btn">← Retour aux salons</a>
+        </nav>
+        
 
-        <section class="section-profil hidden" id="profile-section">
+        <section class="section-profil hidden box" id="profile-section">
             <h1>Profil</h1>
             <div class="profile-info-row">
             <img src="" alt="Photo de profil" class="PhotoProf" id="prof-img"/>
             <p id="prof-name">nom</p>
-            <img src="" id="btn-add-contact" alt="Ajouter aux contacts" class="PhotoAdd"/>
+            <button id="btn-add-contact" class="PhotoAdd" title="Démarrer une conversation">+</button>
             </div> 
             <p id="prof-bio">Bio</p>
             <p id="prof-games">Steam Games</p>
         </section>
-        </div>
 
         
     </body>

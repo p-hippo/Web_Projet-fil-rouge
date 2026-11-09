@@ -13,9 +13,12 @@ const profGames = document.getElementById('prof-games');
 const addContactButton = document.getElementById('btn-add-contact');
 
 let selectedProfileForChat = null;
+let searchTimeout = null;
 
-searchInput.addEventListener('input', async (e) => {
+searchInput.addEventListener('input', (e) => {
     const query = e.target.value.trim();
+
+    clearTimeout(searchTimeout);
 
     if (query.length === 0) {
         resultsTable.classList.add('hidden');
@@ -23,41 +26,51 @@ searchInput.addEventListener('input', async (e) => {
         return;
     }
 
-    const { data: users, error } = await db
-        .from('Users')
-        .select('id, name, avatar_url, bio, steam_id')
-        .ilike('name', `%${query}%`);
+    searchTimeout = setTimeout(async () => {
+        const { data: users, error } = await db
+            .from('Users')
+            .select('id, name, bio, steam_id')
+            .ilike('name', `%${query}%`);
 
-    if (error) {
-        console.error('Error fetching data:', error.message);
-        return;
-    }
+        if (error) {
+            console.error('Error fetching data:', error.message);
+            return;
+        }
 
-    resultsBody.innerHTML = '';
+        resultsBody.innerHTML = '';
 
-    if (users && users.length > 0) {
-        resultsTable.classList.remove('hidden');
-        
-        users.forEach(user => {
-            const row = document.createElement('tr');
-            row.style.cursor = 'pointer';
-            row.innerHTML = `
-                <td><img src="${user.avatar_url || 'https://placeholder.com'}" alt="Avatar"/></td>
-                <td>${user.name}</td>
-            `;
+        if (users && users.length > 0) {
+            resultsTable.classList.remove('hidden');
             
-            row.addEventListener('click', () => displayProfile(user));
-            resultsBody.appendChild(row);
-        });
-    } else {
-        resultsTable.classList.add('hidden');
-    }
+            users.forEach(user => {
+                const avatarSrc = user.steam_id
+                    ? `${API_URL}/api/steam/avatar/${user.steam_id}`
+                    : 'https://placehold.co/80x80/1e1f22/dbdee1?text=?';
+
+                const row = document.createElement('tr');
+                row.style.cursor = 'pointer';
+                row.innerHTML = `
+                    <td><img src="${avatarSrc}" alt="Avatar"/></td>
+                    <td>${user.name}</td>
+                `;
+                
+                row.addEventListener('click', () => displayProfile(user));
+                resultsBody.appendChild(row);
+            });
+        } else {
+            resultsTable.classList.add('hidden');
+        }
+    }, 250);
 });
 
 async function displayProfile(profile) {
     selectedProfileForChat = profile;
 
-    if (profImg) profImg.src = profile.avatar_url || 'https://placehold.co';
+    if (profImg) {
+        profImg.src = profile.steam_id
+            ? `${API_URL}/api/steam/avatar/${profile.steam_id}`
+            : 'https://placehold.co/80x80/1e1f22/dbdee1?text=?';
+    }
     if (profName) profName.textContent = profile.name;
     if (profBio) profBio.textContent = profile.bio || 'Aucune description disponible.';
     

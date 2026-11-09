@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Steams</title>
+        <link rel="icon" type="image/png" href="logo.png">
         <link rel="stylesheet" href="index.css">
         <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
         <script src="supabaseclient.js" defer></script>
@@ -14,7 +15,10 @@
     </head>
     <body>
         <nav>
-            <a href="profile.html">Parametre profile</a>
+            <div class="nav-left">
+                <a href="index.html"><img src="logo.png" alt="Logo Steams" class="nav-logo"></a>
+                <a href="profile.html">Parametre profile</a>
+            </div>
             <button id="logout-btn">Déconnexion</button>
         </nav>
 
@@ -23,17 +27,19 @@
                 <th>Conversation</th>
             </tr>
             <tr id="salon-row">
-                <td class="chatCircle"><a href="contact.html">X+</a></td>
+                <td class="chatCircle"><a href="contact.html">+</a></td>
             </tr>
         </table>
         <div class="chatSection">
             <div id="chat-messages-box">
             <p style="color: gray; font-style: italic;">Sélectionnez un salon pour commencer à clavarder...</p>
         </div>
-        <br>
-        </br>
-        <input type="text" placeholder="Entrer un message" id="message-input"> <button id="send-btn">Envoyer</button>
-        <button id="steam-share-btn">Partager Top 10 Steam</button>
+        <div class="chatSection-bottom">
+                <input type="text" placeholder="Entrer un message..." id="message-input">
+                <button id="send-btn">Envoyer ➤</button>
+                <button id="steam-share-btn">Partager mon Top 10</button>
+            </div>
+        </div>
         </div>
     </body>
 </html>
