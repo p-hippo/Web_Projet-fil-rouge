@@ -127,3 +127,11 @@ textarea::placeholder {
     color: var(--text-muted);
     margin: 5px 0 0 0;
 }
+
+.auth-logo {
+    width: 160px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 8px;
+    display: block;
+}

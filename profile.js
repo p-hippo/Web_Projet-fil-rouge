@@ -58,7 +58,7 @@ async function loadCurrentProfile() {
     }
 
     if (steamStatusText && currentSteamId) {
-        steamStatusText.textContent = "Compte Steam lié (ID : " + currentSteamId + ")";
+        steamStatusText.textContent = "Compte Steam lié ✅ (ID : " + currentSteamId + ")";
     }
 }
 

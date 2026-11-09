@@ -5,14 +5,13 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const STEAM_API_KEY = process.env.STEAM_API_KEY;
-const BACKEND_URL = process.env.BACKEND_URL || `http://localhost:${PORT}`;
-const FRONTEND_URL = process.env.FRONTEND_URL || `http://localhost:${PORT}`;
+const BACKEND_URL = (process.env.BACKEND_URL || `http://localhost:${PORT}`).replace(/\/$/, '');
+const FRONTEND_URL = (process.env.FRONTEND_URL || `http://localhost:${PORT}`).replace(/\/$/, '');
 
 app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname));
 
-// 1. Redirection vers la page de connexion Steam
 app.get('/auth/steam', (req, res) => {
     const params = new URLSearchParams({
         'openid.ns': 'http://specs.openid.net/auth/2.0',
@@ -25,7 +24,6 @@ app.get('/auth/steam', (req, res) => {
     res.redirect(`https://steamcommunity.com/openid/login?${params.toString()}`);
 });
 
-// 2. Retour de Steam et extraction du SteamID64
 app.get('/auth/steam/return', async (req, res) => {
     try {
         const verifyParams = new URLSearchParams(req.query);
@@ -49,7 +47,31 @@ app.get('/auth/steam/return', async (req, res) => {
     }
 });
 
-// 3. Récupération du Top 10 des jeux les plus joués
+// 4. Récupération dynamique de l'avatar Steam (sans stockage)
+app.get('/api/steam/avatar/:steamid', async (req, res) => {
+    const { steamid } = req.params;
+    const defaultAvatar = 'https://placehold.co/80x80/1e1f22/dbdee1?text=?';
+
+    if (!/^\d+$/.test(steamid) || !STEAM_API_KEY) {
+        return res.redirect(defaultAvatar);
+    }
+
+    try {
+        const url = `https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=${STEAM_API_KEY}&steamids=${steamid}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        const player = data.response?.players?.[0];
+
+        if (player && player.avatarfull) {
+            return res.redirect(player.avatarfull);
+        }
+        return res.redirect(defaultAvatar);
+    } catch (err) {
+        console.error('Erreur avatar Steam:', err);
+        return res.redirect(defaultAvatar);
+    }
+});
+
 app.get('/api/steam/top-games/:steamid', async (req, res) => {
     try {
         const url = `https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=${STEAM_API_KEY}&steamid=${req.params.steamid}&include_appinfo=1&include_played_free_games=1&format=json`;

@@ -26,7 +26,7 @@ async function loadSalons() {
     contactTd.className = "chatCircle";
     const contactLink = document.createElement("a");
     contactLink.href = "contact.html";
-    contactLink.textContent = "X+";
+    contactLink.textContent = "+";
     contactTd.appendChild(contactLink);
     salonRowContainer.appendChild(contactTd);
 
