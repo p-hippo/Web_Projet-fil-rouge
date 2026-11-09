@@ -1,12 +1,15 @@
 # Web_Projet-fil-rouge : Steams
 
 **Steams** est une application web de messagerie instantanée développée dans le cadre du projet fil rouge. Elle combine un système de discussion en temps réel avec l'API Web de Steam pour permettre aux joueurs de partager facilement leurs statistiques.
+> **Note** : L'API Steam ne marche qu'avec des profils publics pour récupérer les jeux.
 
 ## Lien du site du projet (temporaire)
 
 ```
 https://web-projet-fil-rouge.onrender.com/
 ```
+
+> **Note** : Ce lien est temporaire et sera supprimé après l'évaluation du projet.
 
 ## Fonctionnalités principales
 
@@ -27,7 +30,7 @@ https://web-projet-fil-rouge.onrender.com/
 - **Base de données & Temps réel** : [Supabase](https://supabase.com/) (Auth, PostgreSQL, Realtime)
 - **Backend** : Node.js & Express (gestion de l'OpenID Steam et appels à l'API Steam Web)
 - **Hébergement** : [Render](https://render.com/)
-> **Note** : On doit passer par Render pour gérer le backend (notamment la connexion via Steam) car GitHub Page ne le permet pas
+> **Note** : On doit passer par Render pour gérer le backend (notamment la connexion via Steam) car GitHub Page ne le permet pas.
 
 
 ## Installation et lancement en local
@@ -51,5 +54,3 @@ https://web-projet-fil-rouge.onrender.com/
    npm start
    ```
    L'application est ensuite accessible sur `http://localhost:3000/`.
-
-> **Note** : L'API Steam ne marche qu'avec des profils publics pour récupérer les jeux.
