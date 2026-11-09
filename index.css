@@ -9,6 +9,10 @@
     --accent-purple-hover: #4752c4;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 20px;
