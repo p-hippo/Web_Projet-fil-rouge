@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Steams - Configurer mon Profil</title>
+    <link rel="stylesheet" href="styles.css">
     
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
     <script src="supabaseclient.js" defer></script>
+    <script src="data.js" defer></script>
     <script src="auth.js" defer></script>
     <script src="local.js" defer></script>
     <script src="profile.js" defer></script>
@@ -25,6 +27,11 @@
             <div class="input-group">
                 <label for="profile-bio">Biographie</label>
                 <textarea id="profile-bio" placeholder="entrer bio" rows="4" style="width: 100%; border-radius: 4px; padding: 10px; border: 1px solid #ccc; font-family: sans-serif; box-sizing: border-box;"></textarea>
+            </div>
+
+            <div class="input-group" style="margin: 15px 0;">
+                <button type="button" id="btn-link-steam">Lier mon compte Steam</button>
+                <p id="steam-status">Aucun compte Steam lié</p>
             </div>
             
             <button type="submit" class="btn-submit">Enregistrer et Continuer</button>

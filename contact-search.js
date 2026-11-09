@@ -25,7 +25,7 @@ searchInput.addEventListener('input', async (e) => {
 
     const { data: users, error } = await db
         .from('Users')
-        .select('id, name, avatar_url, bio')
+        .select('id, name, avatar_url, bio, steam_id')
         .ilike('name', `%${query}%`);
 
     if (error) {
@@ -54,17 +54,29 @@ searchInput.addEventListener('input', async (e) => {
     }
 });
 
-function displayProfile(profile) {
-
+async function displayProfile(profile) {
     selectedProfileForChat = profile;
 
     if (profImg) profImg.src = profile.avatar_url || 'https://placehold.co';
     if (profName) profName.textContent = profile.name;
     if (profBio) profBio.textContent = profile.bio || 'Aucune description disponible.';
     
-    if (profGames) profGames.textContent = 'Steam Info: Indisponible';
-    
     if (profileSection) profileSection.classList.remove('hidden');
+
+    if (profGames) {
+        if (!profile.steam_id) {
+            profGames.textContent = 'Steam Info: Indisponible';
+        } else {
+            profGames.textContent = 'Chargement du Top 10 Steam...';
+            const data = await Data.fetchSteamGames(profile.steam_id);
+            if (data.games && data.games.length > 0) {
+                profGames.innerHTML = "<strong>Top 10 Steam :</strong><br>" +
+                    data.games.map((g, i) => `${i + 1}. ${g.name} (${g.hours}h)`).join('<br>');
+            } else {
+                profGames.textContent = 'Steam Info: Profil privé ou aucun jeu';
+            }
+        }
+    }
 }
 
 if (addContactButton) {
@@ -80,7 +92,7 @@ if (addContactButton) {
 
         const { data: currentUserProfile, error: profileError } = await db
             .from('Users')
-            .select('id, name')
+            .select('id, name, steam_id')
             .eq('user_Id', authUser.id)
             .single();
 

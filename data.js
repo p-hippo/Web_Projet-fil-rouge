@@ -1,4 +1,13 @@
+const API_URL = (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+    ? "http://localhost:3000"
+    : "https://web-projet-fil-rouge.onrender.com";
+
 const Data = {
+    async fetchSteamGames(steamId) {
+        const response = await fetch(`${API_URL}/api/steam/top-games/${steamId}`);
+        return await response.json();
+    },
+
     async fetchChannel(){
         return await supabaseClient
         .from("Salon")
@@ -67,7 +76,16 @@ const Data = {
           table: "Messages",
           filter: "salon_id=eq." + channelId,
         },
-        (payload) => onNewMessage(payload.new)
+        async (payload) => {
+          const { data: user } = await supabaseClient
+            .from("Users")
+            .select("name")
+            .eq("id", payload.new.sender_id)
+            .single();
+
+          payload.new.Users = user;
+          onNewMessage(payload.new);
+        }
       )
       .subscribe();
     

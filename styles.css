@@ -1,0 +1,129 @@
+:root {
+    --bg-main: #313338;
+    --bg-secondary: #2b2d31;
+    --bg-tertiary: #1e1f22;
+    --bg-input: #383a40;
+    --text-normal: #dbdee1;
+    --text-muted: #949ba4;
+    --accent-purple: #5865f2;
+    --accent-purple-hover: #4752c4;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-main);
+    color: var(--text-normal);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container,
+.register-container {
+    background-color: var(--bg-secondary);
+    padding: 30px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+h2 {
+    color: white;
+    font-size: 22px;
+    margin: 0 0 10px 0;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+label {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+textarea {
+    width: 100%;
+    height: 40px;
+    background-color: var(--bg-input);
+    border: none;
+    border-radius: 6px;
+    padding: 0 12px;
+    color: var(--text-normal);
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+textarea {
+    height: auto;
+    padding: 10px 12px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-muted);
+}
+
+.btn-submit {
+    background-color: var(--accent-purple);
+    color: white;
+    border: none;
+    height: 42px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background-color: var(--accent-purple-hover);
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.links a {
+    color: var(--accent-purple);
+    text-decoration: none;
+}
+
+.links a:hover {
+    text-decoration: underline;
+}
+
+#steam-status {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 5px 0 0 0;
+}

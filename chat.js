@@ -1,3 +1,6 @@
+const steamShareButton = document.getElementById("steam-share-btn");
+let currentSteamId = null;
+
 const salonRowContainer = document.getElementById("salon-row");
 const messagesHistoryContainer = document.getElementById("chat-messages-box");
 const messageInputField = document.getElementById("message-input");
@@ -80,9 +83,13 @@ function appendMessage(message) {
 
 function displayMessage(message) {
     const pElement = document.createElement("p");
+    const strongElement = document.createElement("strong");
     
     const senderName = message.Users?.name || "Profil Inconnu";
-    pElement.innerHTML = `<strong>${senderName}:</strong> ${message.content}`;
+    strongElement.textContent = `${senderName}: `;
+    
+    pElement.appendChild(strongElement);
+    pElement.appendChild(document.createTextNode(message.content));
     
     messagesHistoryContainer.appendChild(pElement);
 }
@@ -112,6 +119,28 @@ if (sendMessageButton) {
     sendMessageButton.addEventListener("click", (e) => {
         e.preventDefault();
         sendChat();
+    });
+}
+
+if (steamShareButton) {
+    steamShareButton.addEventListener("click", async (e) => {
+        e.preventDefault();
+        if (!activeSalonId || !currentProfileId) return;
+        if (!currentSteamId) {
+            alert("Associez d'abord votre compte Steam dans les paramètres du profil !");
+            return;
+        }
+
+        const data = await Data.fetchSteamGames(currentSteamId);
+        if (!data.games || data.games.length === 0) {
+            alert("Aucun jeu public trouvé sur votre profil Steam.");
+            return;
+        }
+
+        const messageContent = "Mon Top 10 Steam :\n" + 
+            data.games.map((g, i) => `${i + 1}. ${g.name} (${g.hours}h)`).join("\n");
+
+        await Data.sendMessage(activeSalonId.id, messageContent, currentProfileId);
     });
 }
 
@@ -155,7 +184,7 @@ async function init() {
 
     const { data: profile, error: profileError } = await supabaseClient
         .from("Users")
-        .select("id")
+        .select("id, steam_id")
         .eq("user_Id", currentUserUuid)
         .single();
 
@@ -165,6 +194,7 @@ async function init() {
     }
 
     currentProfileId = profile.id;
+    currentSteamId = profile.steam_id;
 
     await loadSalons();
     
